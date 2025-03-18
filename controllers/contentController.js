@@ -112,9 +112,9 @@ async function CreateOutline(req, res) {
         res.setHeader('Content-Type', 'application/json');
         const data = {
             content: result.response.text(),
-            promptTokenCount: result.response.promptTokenCount,
-            candidatesTokenCount: result.response.candidatesTokenCount,
-            totalTokenCount: result.response.totalTokenCount
+            promptTokenCount: result.promptTokenCount,
+            candidatesTokenCount: result.candidatesTokenCount,
+            totalTokenCount: result.totalTokenCount
         };
         console.log(data);
         
