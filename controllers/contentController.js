@@ -42,17 +42,16 @@ async function CreateContent(req, res) {
             \`\`\`
             *Lưu ý: chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
         `;
-        const response = await model.generateContent(Prompt);
+        const result = await model.generateContent(Prompt);
         res.setHeader('Content-Type', 'application/json');
-        for await (const chunk of response) {
-            const data = {
-                content: chunk.text(),
-                promptTokenCount: chunk.promptTokenCount,
-                candidatesTokenCount: chunk.candidatesTokenCount,
-                totalTokenCount: chunk.totalTokenCount
-            };
-            res.write(JSON.stringify(data));
-        }
+        const data = {
+            content: result.response.text(),
+            promptTokenCount: result.response.usageMetadata.promptTokenCount,
+            candidatesTokenCount: result.response.usageMetadata.candidatesTokenCount,
+            totalTokenCount: result.response.usageMetadata.totalTokenCount
+        };
+        res.write(JSON.stringify(data));
+        
         // const response = await model.generateContentStream(Prompt);
         // res.setHeader('Content-Type', 'text/stream');
         // for await (const chunk of response.stream) {
@@ -109,14 +108,12 @@ async function CreateOutline(req, res) {
             *Lưu ý: Không sử dụng nháy đôi (double quotes) trong nội dung json
         `;
         const result = await model.generateContent(Prompt);
-        console.log(result);
-        
         res.setHeader('Content-Type', 'application/json');
         const data = {
             content: result.response.text(),
-            promptTokenCount: result.promptTokenCount,
-            candidatesTokenCount: result.candidatesTokenCount,
-            totalTokenCount: result.totalTokenCount
+            promptTokenCount: result.response.usageMetadata.promptTokenCount,
+            candidatesTokenCount: result.response.usageMetadata.candidatesTokenCount,
+            totalTokenCount: result.response.usageMetadata.totalTokenCount
         };        
         res.write(JSON.stringify(data));
 
