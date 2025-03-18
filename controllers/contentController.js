@@ -44,7 +44,7 @@ async function CreateContent(req, res) {
         `;
         const response = await model.generateContent(Prompt);
         res.setHeader('Content-Type', 'application/json');
-        for await (const chunk of response.stream) {
+        for await (const chunk of response) {
             const data = {
                 content: chunk.text(),
                 promptTokenCount: chunk.promptTokenCount,
@@ -110,7 +110,7 @@ async function CreateOutline(req, res) {
         `;
         const response = await model.generateContent(Prompt);
         res.setHeader('Content-Type', 'application/json');
-        for await (const chunk of response.stream) {
+        for await (const chunk of response) {
             const data = {
                 content: chunk.text(),
                 promptTokenCount: chunk.promptTokenCount,
