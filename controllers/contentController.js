@@ -55,10 +55,10 @@ async function CreateContent(req, res) {
             };
             res.write(JSON.stringify(data));
         }
-        writeLog();
+        // writeLog();
         res.end();
     } catch (error) {
-        writeError(error);
+        // writeError(error);
         // console.error("Error generating response: ", error);
         res.status(500).send("An error occurred while generating the response");
     }
@@ -111,10 +111,10 @@ async function CreateOutline(req, res) {
             };
             res.write(JSON.stringify(data));
         }
-        writeLog();
+        // writeLog();
         res.end();
     } catch (error) {
-        writeError(error);
+        // writeError(error);
         // console.error("Error generating response: ", error);
         res.status(500).send("An error occurred while generating the response");
     }
@@ -122,7 +122,6 @@ async function CreateOutline(req, res) {
 
 function writeLog() {
     const filePath = path.join(__dirname, 'apilog.txt'); // __dirname là thư mục của file script
-    console.log(filePath);
     
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
