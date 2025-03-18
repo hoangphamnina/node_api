@@ -13,7 +13,7 @@ async function CreateContent(req, res) {
     const { length, keyword, tone, note, outline, title } = req.body;
 
     if (apikey == '' || typeof apikey == 'undefined') {
-        writeError('key error 2');
+        // writeError('key error 2');
         res.status(500).send("Key không hợp lệ");
         return;
     }
@@ -22,8 +22,7 @@ async function CreateContent(req, res) {
         const genAI = new GoogleGenerativeAI(apikey);
         const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
         const Prompt = `
-            ${note},
-            Bạn là một nhà sáng tao nội dung. Dựa vào dàn ý theo file JSON: \`\`\`json\n\n ${outline} \n\n\`\`\` và viết giúp tôi một bài viết SEO thõa mãn tất cả các tiêu chí sau:
+            *${note}. Bạn là một nhà sáng tao nội dung. Dựa vào dàn ý theo file JSON: \`\`\`json\n\n ${outline} \n\n\`\`\` và viết giúp tôi một bài viết SEO thõa mãn tất cả các tiêu chí sau:
             1. Phong cách viết: ${tone}
             2. Từ khóa mục tiêu: **${keyword}**
             3. Giữ nguyên nội dung và thứ tự các tiêu đề H2, H3 theo dàn ý
@@ -43,18 +42,28 @@ async function CreateContent(req, res) {
             \`\`\`
             *Lưu ý: chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
         `;
-        const response = await model.generateContentStream(Prompt);
-
-        res.setHeader('Content-Type', 'text/stream');
+        const response = await model.generateContent(Prompt);
+        res.setHeader('Content-Type', 'application/json');
         for await (const chunk of response.stream) {
             const data = {
                 content: chunk.text(),
-                promptTokenCount: chunk.usageMetadata.promptTokenCount,
-                candidatesTokenCount: chunk.usageMetadata.candidatesTokenCount,
-                totalTokenCount: chunk.usageMetadata.totalTokenCount
+                promptTokenCount: chunk.promptTokenCount,
+                candidatesTokenCount: chunk.candidatesTokenCount,
+                totalTokenCount: chunk.totalTokenCount
             };
             res.write(JSON.stringify(data));
         }
+        // const response = await model.generateContentStream(Prompt);
+        // res.setHeader('Content-Type', 'text/stream');
+        // for await (const chunk of response.stream) {
+        //     const data = {
+        //         content: chunk.text(),
+        //         promptTokenCount: chunk.usageMetadata.promptTokenCount,
+        //         candidatesTokenCount: chunk.usageMetadata.candidatesTokenCount,
+        //         totalTokenCount: chunk.usageMetadata.totalTokenCount
+        //     };
+        //     res.write(JSON.stringify(data));
+        // }
         // writeLog();
         res.end();
     } catch (error) {
@@ -68,7 +77,7 @@ async function CreateOutline(req, res) {
     const { length, keyword, title, tone } = req.body;
 
     if (apikey == '' || typeof apikey == 'undefined') {
-        writeError('key error 1');
+        // writeError('key error 1');
         res.status(500).send("Key không hợp lệ");
         return false;
     }
@@ -99,18 +108,30 @@ async function CreateOutline(req, res) {
             *Lưu ý: chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
             *Lưu ý: Không sử dụng nháy đôi (double quotes) trong nội dung json
         `;
-        const response = await model.generateContentStream(Prompt);
-
-        res.setHeader('Content-Type', 'text/stream');
+        const response = await model.generateContent(Prompt);
+        res.setHeader('Content-Type', 'application/json');
         for await (const chunk of response.stream) {
             const data = {
                 content: chunk.text(),
-                promptTokenCount: chunk.usageMetadata.promptTokenCount,
-                candidatesTokenCount: chunk.usageMetadata.candidatesTokenCount,
-                totalTokenCount: chunk.usageMetadata.totalTokenCount
+                promptTokenCount: chunk.promptTokenCount,
+                candidatesTokenCount: chunk.candidatesTokenCount,
+                totalTokenCount: chunk.totalTokenCount
             };
             res.write(JSON.stringify(data));
         }
+
+
+        // const response = await model.generateContentStream(Prompt);
+        // res.setHeader('Content-Type', 'text/stream');
+        // for await (const chunk of response.stream) {
+        //     const data = {
+        //         content: chunk.text(),
+        //         promptTokenCount: chunk.usageMetadata.promptTokenCount,
+        //         candidatesTokenCount: chunk.usageMetadata.candidatesTokenCount,
+        //         totalTokenCount: chunk.usageMetadata.totalTokenCount
+        //     };
+        //     res.write(JSON.stringify(data));
+        // }
         // writeLog();
         res.end();
     } catch (error) {
@@ -122,7 +143,7 @@ async function CreateOutline(req, res) {
 
 function writeLog() {
     const filePath = path.join(__dirname, 'apilog.txt'); // __dirname là thư mục của file script
-    
+
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             console.error('Lỗi khi đọc file:', err);
