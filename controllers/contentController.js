@@ -68,7 +68,7 @@ async function CreateContent(req, res) {
         res.end();
     } catch (error) {
         // writeError(error);
-        // console.error("Error generating response: ", error);
+        console.error("Error generating response: ", error);
         res.status(500).send("An error occurred while generating the response");
     }
 }
@@ -134,7 +134,7 @@ async function CreateOutline(req, res) {
         res.end();
     } catch (error) {
         // writeError(error);
-        // console.error("Error generating response: ", error);
+        console.error("Error generating response: ", error);
         res.status(500).send("An error occurred while generating the response");
     }
 }
