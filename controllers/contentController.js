@@ -44,7 +44,7 @@ async function CreateContent(req, res) {
         `;
         const response = await model.generateContent(Prompt);
         res.setHeader('Content-Type', 'application/json');
-        for await (const chunk of response.response) {
+        for await (const chunk of response) {
             const data = {
                 content: chunk.text(),
                 promptTokenCount: chunk.promptTokenCount,
@@ -109,8 +109,10 @@ async function CreateOutline(req, res) {
             *Lưu ý: Không sử dụng nháy đôi (double quotes) trong nội dung json
         `;
         const response = await model.generateContent(Prompt);
+        console.log(response);
+        
         res.setHeader('Content-Type', 'application/json');
-        for await (const chunk of response.response) {
+        for await (const chunk of response) {
             const data = {
                 content: chunk.text(),
                 promptTokenCount: chunk.promptTokenCount,
