@@ -51,7 +51,7 @@ async function CreateContent(req, res) {
             totalTokenCount: result.response.usageMetadata.totalTokenCount
         };
         res.write(JSON.stringify(data));
-        
+
         // const response = await model.generateContentStream(Prompt);
         // res.setHeader('Content-Type', 'text/stream');
         // for await (const chunk of response.stream) {
@@ -93,7 +93,9 @@ async function CreateOutline(req, res) {
             6. Độ dài bài viết: ${length}
             7. Từ khóa mục tiêu: ${keyword}
             8. Tiêu đề bài viết: ${title}
-            *Lưu ý: Chỉ trả về dạng markdown theo cấu trúc JSON bên dưới.
+            * Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
+            * Không sử dụng nháy đôi (double quotes) trong nội dung json
+            * Chỉ trả về markdown theo cấu trúc json như bên dưới.
             \`\`\`json
             [
                 {
@@ -104,8 +106,6 @@ async function CreateOutline(req, res) {
                 }
             ]
             \`\`\`
-            *Lưu ý: chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
-            *Lưu ý: Không sử dụng nháy đôi (double quotes) trong nội dung json
         `;
         const result = await model.generateContent(Prompt);
         res.setHeader('Content-Type', 'application/json');
