@@ -122,7 +122,8 @@ async function CreateOutline(req, res) {
 
 function writeLog() {
     const filePath = path.join(__dirname, 'apilog.txt'); // __dirname là thư mục của file script
-
+    console.log(filePath);
+    
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             console.error('Lỗi khi đọc file:', err);
