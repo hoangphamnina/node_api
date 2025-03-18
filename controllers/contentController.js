@@ -130,7 +130,7 @@ function writeLog() {
         count = parseFloat(data);
         count++;
 
-        fs.writeFile('../apilog.txt', count.toString(), 'utf8', (err) => {
+        fs.writeFile('apilog.txt', count.toString(), 'utf8', (err) => {
             if (err) {
                 console.error('Lỗi khi ghi file:', err);
                 return;
@@ -149,7 +149,7 @@ function writeError(error = "") {
         newContent = data;
         newContent += `[Lỗi]_[${error}]\n\n`;
 
-        fs.writeFile('../apilog_error.txt', newContent, 'utf8', (err) => {
+        fs.writeFile('apilog_error.txt', newContent, 'utf8', (err) => {
             if (err) {
                 console.error('Lỗi khi ghi file:', err);
                 return;
