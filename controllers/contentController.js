@@ -1,6 +1,8 @@
 const express = require('express');
 const fs = require('fs');
 const multer = require("multer");
+const path = require('path');
+
 const {
     GoogleGenerativeAI,
     HarmCategory,
@@ -119,7 +121,9 @@ async function CreateOutline(req, res) {
 }
 
 function writeLog() {
-    fs.readFile('apilog.txt', 'utf8', (err, data) => {
+    const filePath = path.join(__dirname, '../apilog.txt'); // __dirname là thư mục của file script
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             console.error('Lỗi khi đọc file:', err);
             return;
@@ -128,7 +132,7 @@ function writeLog() {
         count = parseFloat(data);
         count++;
 
-        fs.writeFile('apilog.txt', count.toString(), 'utf8', (err) => {
+        fs.writeFile(filePath, count.toString(), 'utf8', (err) => {
             if (err) {
                 console.error('Lỗi khi ghi file:', err);
                 return;
@@ -138,7 +142,9 @@ function writeLog() {
     });
 }
 function writeError(error = "") {
-    fs.readFile('apilog_error.txt', 'utf8', (err, data) => {
+    const filePath = path.join(__dirname, '../apilog_error.txt'); // __dirname là thư mục của file script
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             console.error('Lỗi khi đọc file:', err);
             return;
@@ -147,7 +153,7 @@ function writeError(error = "") {
         newContent = data;
         newContent += `[Lỗi]_[${error}]\n\n`;
 
-        fs.writeFile('apilog_error.txt', newContent, 'utf8', (err) => {
+        fs.writeFile(filePath, newContent, 'utf8', (err) => {
             if (err) {
                 console.error('Lỗi khi ghi file:', err);
                 return;
