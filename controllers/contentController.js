@@ -95,7 +95,7 @@ async function CreateOutline(req, res) {
             8. Tiêu đề bài viết: ${title}
             9. Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
             10. Không sử dụng nháy đôi (double quotes) trong nội dung json
-            * Lưu ý: Chỉ trả về markdown theo cấu trúc json như bên dưới.
+            * Lưu ý: Không cần trả lời gì khác và chỉ hiển thị markdown theo cấu trúc json như bên dưới.
             \`\`\`json
             [
                 {
