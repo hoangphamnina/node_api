@@ -140,7 +140,7 @@ function writeLog() {
     });
 }
 function writeError(error = "") {
-    fs.readFile('apilog_error.txt', 'utf8', (err, data) => {
+    fs.readFile('../apilog_error.txt', 'utf8', (err, data) => {
         if (err) {
             console.error('Lỗi khi đọc file:', err);
             return;
@@ -149,7 +149,7 @@ function writeError(error = "") {
         newContent = data;
         newContent += `[Lỗi]_[${error}]\n\n`;
 
-        fs.writeFile('apilog_error.txt', newContent, 'utf8', (err) => {
+        fs.writeFile('../apilog_error.txt', newContent, 'utf8', (err) => {
             if (err) {
                 console.error('Lỗi khi ghi file:', err);
                 return;
