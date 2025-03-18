@@ -107,6 +107,7 @@ async function CreateOutline(req, res) {
             ]
             \`\`\`
         `;
+        console.log(Prompt);
         const result = await model.generateContent(Prompt);
         res.setHeader('Content-Type', 'application/json');
         const data = {
