@@ -108,19 +108,17 @@ async function CreateOutline(req, res) {
             *Lưu ý: chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
             *Lưu ý: Không sử dụng nháy đôi (double quotes) trong nội dung json
         `;
-        const response = await model.generateContent(Prompt);
-        console.log(response);
-        
+        const result = await model.generateContent(Prompt);
         res.setHeader('Content-Type', 'application/json');
-        for await (const chunk of response) {
-            const data = {
-                content: chunk.text(),
-                promptTokenCount: chunk.promptTokenCount,
-                candidatesTokenCount: chunk.candidatesTokenCount,
-                totalTokenCount: chunk.totalTokenCount
-            };
-            res.write(JSON.stringify(data));
-        }
+        const data = {
+            content: result.response.text(),
+            promptTokenCount: result.response.promptTokenCount,
+            candidatesTokenCount: result.response.candidatesTokenCount,
+            totalTokenCount: result.response.totalTokenCount
+        };
+        console.log(data);
+        
+        res.write(JSON.stringify(data));
 
 
         // const response = await model.generateContentStream(Prompt);
