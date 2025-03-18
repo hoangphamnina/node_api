@@ -84,7 +84,7 @@ async function CreateOutline(req, res) {
     try {
         const genAI = new GoogleGenerativeAI(apikey);
         const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash', tools: [{ 'google_search': {} }] });
-        const Prompt = `Bạn là một nhà sáng tạo nội dung. Hãy tạo và chỉ hiển thị cho tôi dàn ý để viết một bài viết SEO thỏa các tiêu chí bên dưới:
+        const Prompt = `Bạn là một nhà sáng tạo nội dung. Hãy tạo cho tôi dàn ý để viết một bài viết SEO thỏa các tiêu chí bên dưới:
             1. Phong cách viết: ${tone}
             2. Tối đa 4 lần xuất hiện H2
             3. Không viết về các quy trình hoặc cách đặt hàng
@@ -93,9 +93,9 @@ async function CreateOutline(req, res) {
             6. Độ dài bài viết: ${length}
             7. Từ khóa mục tiêu: ${keyword}
             8. Tiêu đề bài viết: ${title}
-            * Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
-            * Không sử dụng nháy đôi (double quotes) trong nội dung json
-            * Chỉ trả về markdown theo cấu trúc json như bên dưới.
+            9. Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
+            10. Không sử dụng nháy đôi (double quotes) trong nội dung json
+            * Lưu ý: Chỉ trả về markdown theo cấu trúc json như bên dưới.
             \`\`\`json
             [
                 {
