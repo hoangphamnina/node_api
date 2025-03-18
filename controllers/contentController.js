@@ -34,7 +34,7 @@ async function CreateContent(req, res) {
             9. Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
             10. Không sử dụng nháy đôi (double quotes) trong nội dung json
             Sau khi hoàn thành, cung cấp SEO Description (160-300 ký tự) và SEO Title (40-70 ký tự) cho bài viết
-            **#Lưu ý: Không cần trả lời gì khác và chỉ hiển thị markdown theo cấu trúc json như bên dưới.**
+            *Lưu ý: Không cần trả lời gì khác và chỉ hiển thị markdown theo cấu trúc json như bên dưới.
             \`\`\`json
             {
                 \"content\": string (markdown) - Nội dung bài viết,
@@ -95,7 +95,7 @@ async function CreateOutline(req, res) {
             8. Tiêu đề bài viết: ${title}
             9. Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
             10. Không sử dụng nháy đôi (double quotes) trong nội dung json
-            **#Lưu ý: Không cần trả lời gì khác và chỉ hiển thị markdown theo cấu trúc json như bên dưới.**
+            *Lưu ý: Không cần trả lời gì khác và chỉ hiển thị markdown theo cấu trúc json như bên dưới.
             \`\`\`json
             [
                 {
