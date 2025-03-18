@@ -68,8 +68,7 @@ async function CreateContent(req, res) {
         res.end();
     } catch (error) {
         // writeError(error);
-        console.error("Error generating response: ", error);
-        res.status(500).send("An error occurred while generating the response");
+        res.status(error.status).send(error.statusText);
     }
 }
 async function CreateOutline(req, res) {
@@ -115,7 +114,7 @@ async function CreateOutline(req, res) {
             promptTokenCount: result.response.usageMetadata.promptTokenCount,
             candidatesTokenCount: result.response.usageMetadata.candidatesTokenCount,
             totalTokenCount: result.response.usageMetadata.totalTokenCount
-        };        
+        };
         res.write(JSON.stringify(data));
 
 
@@ -134,8 +133,7 @@ async function CreateOutline(req, res) {
         res.end();
     } catch (error) {
         // writeError(error);
-        console.error("Error generating response: ", error);
-        res.status(500).send("An error occurred while generating the response");
+        res.status(error.status).send(error.statusText);
     }
 }
 
