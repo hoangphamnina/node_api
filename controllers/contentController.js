@@ -121,7 +121,7 @@ async function CreateOutline(req, res) {
 }
 
 function writeLog() {
-    const filePath = path.join(__dirname, '../apilog.txt'); // __dirname là thư mục của file script
+    const filePath = path.join(__dirname, 'apilog.txt'); // __dirname là thư mục của file script
 
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
@@ -142,7 +142,7 @@ function writeLog() {
     });
 }
 function writeError(error = "") {
-    const filePath = path.join(__dirname, '../apilog_error.txt'); // __dirname là thư mục của file script
+    const filePath = path.join(__dirname, 'apilog_error.txt'); // __dirname là thư mục của file script
 
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
