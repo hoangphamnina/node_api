@@ -109,15 +109,15 @@ async function CreateOutline(req, res) {
             *Lưu ý: Không sử dụng nháy đôi (double quotes) trong nội dung json
         `;
         const result = await model.generateContent(Prompt);
+        console.log(result);
+        
         res.setHeader('Content-Type', 'application/json');
         const data = {
             content: result.response.text(),
             promptTokenCount: result.promptTokenCount,
             candidatesTokenCount: result.candidatesTokenCount,
             totalTokenCount: result.totalTokenCount
-        };
-        console.log(data);
-        
+        };        
         res.write(JSON.stringify(data));
 
 
