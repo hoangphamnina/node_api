@@ -1,8 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const multer = require("multer");
-const path = require('path');
-
 const {
     GoogleGenerativeAI,
     HarmCategory,
@@ -121,7 +119,7 @@ async function CreateOutline(req, res) {
 }
 
 function writeLog() {
-    fs.readFile('../apilog.txt', 'utf8', (err, data) => {
+    fs.readFile('apilog.txt', 'utf8', (err, data) => {
         if (err) {
             console.error('Lỗi khi đọc file:', err);
             return;
@@ -140,7 +138,7 @@ function writeLog() {
     });
 }
 function writeError(error = "") {
-    fs.readFile('../apilog_error.txt', 'utf8', (err, data) => {
+    fs.readFile('apilog_error.txt', 'utf8', (err, data) => {
         if (err) {
             console.error('Lỗi khi đọc file:', err);
             return;
