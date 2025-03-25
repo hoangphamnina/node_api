@@ -69,7 +69,6 @@ async function CreateContent(req, res) {
     } catch (error) {
         // writeError(error);
         console.log(error);
-    
         res.status(error.status).send(error.statusText);
     }
 }
@@ -135,6 +134,7 @@ async function CreateOutline(req, res) {
         res.end();
     } catch (error) {
         // writeError(error);
+        console.log(error);
         res.status(error.status).send(error.statusText);
     }
 }
