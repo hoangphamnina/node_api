@@ -28,7 +28,7 @@ async function CreateContent(req, res) {
             3. Giữ nguyên nội dung và thứ tự các tiêu đề H2, H3 theo dàn ý
             4. Nội dung dài: ${length}
             5. Tiêu đề bài viết: ${title}
-            6. Mật độ từ khóa chính: **trên 1% và dưới 2%**
+            6. Mật độ từ khóa chính: **trên 1% và dưới 1.5%**
             7. Bỏ tiêu đề "Kết luận", "Lời kết", "Mở đầu", "Tóm lại", "Tổng kết",...
             8. Thêm emoji vào các vị trí phù hợp trong nội dung
             9. Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
