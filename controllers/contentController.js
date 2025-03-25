@@ -68,6 +68,8 @@ async function CreateContent(req, res) {
         res.end();
     } catch (error) {
         // writeError(error);
+        console.log(error);
+    
         res.status(error.status).send(error.statusText);
     }
 }
