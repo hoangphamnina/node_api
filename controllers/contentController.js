@@ -30,9 +30,8 @@ async function CreateContent(req, res) {
             5. Tiêu đề bài viết: ${title}
             6. Mật độ từ khóa chính: **trên 1% và dưới 1.5%**
             7. Bỏ tiêu đề "Kết luận", "Lời kết", "Mở đầu", "Tóm lại", "Tổng kết",...
-            8. Thêm emoji vào các vị trí phù hợp trong nội dung
-            9. Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
-            10. Không sử dụng nháy đôi (double quotes) trong nội dung json
+            8. Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
+            9. Không sử dụng nháy đôi (double quotes) trong nội dung json
             Sau khi hoàn thành, cung cấp SEO Description (160-300 ký tự) và SEO Title (40-70 ký tự) cho bài viết
             *Lưu ý: Không cần trả lời gì khác và chỉ hiển thị markdown theo cấu trúc json như bên dưới.
             \`\`\`json
