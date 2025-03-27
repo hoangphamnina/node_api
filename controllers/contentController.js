@@ -28,14 +28,14 @@ async function CreateContent(req, res) {
             3. Giữ nguyên nội dung và thứ tự các tiêu đề H2, H3 theo dàn ý
             4. Nội dung dài: ${length}
             5. Tiêu đề bài viết: ${title}
-            6. Mật độ từ khóa chính: **trên 1% và dưới 1.5%**
+            6. Mật độ từ khóa mục tiêu: **1% - 1.5%**
             7. Bỏ tiêu đề "Kết luận", "Lời kết", "Mở đầu", "Tóm lại", "Tổng kết",...
             8. Chuyển đổi phần nội dung của content sang dạng json encode để chắc chắn không bị lỗi khi parse json
             9. Không sử dụng nháy đôi (double quotes) trong nội dung json
             Sau khi hoàn thành, cung cấp cho bài viết:
             * SEO Description (160-300 ký tự)
             * SEO Title (40-70 ký tự)
-            * Slug SEO Title (chuẩn slug link website)
+            * Slug SEO Title
             *Lưu ý: Không cần trả lời gì khác và chỉ hiển thị markdown theo cấu trúc json như bên dưới.
             \`\`\`json
             {
