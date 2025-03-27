@@ -35,7 +35,7 @@ async function CreateContent(req, res) {
             Sau khi hoàn thành, cung cấp cho bài viết:
             * SEO Description (160-300 ký tự)
             * SEO Title (40-70 ký tự)
-            * Slug SEO Title
+            * Slug SEO Title (chuẩn slug link website)
             *Lưu ý: Không cần trả lời gì khác và chỉ hiển thị markdown theo cấu trúc json như bên dưới.
             \`\`\`json
             {
